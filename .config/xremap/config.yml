@@ -1,0 +1,29 @@
+modmap:
+  - name: freefiremax-only
+    device:
+      only:
+        - "AT Translated Set 2 keyboard"
+        - "SIGMACHIP USB Mouse"
+
+    application:
+      only: waydroid.com.dts.freefiremax
+
+    remap:
+      # esc to capslock
+      CapsLock: Esc
+      Esc: CapsLock 
+  
+      KEY_LEFTALT: [KEY_4]
+      KEY_RIGHTALT: KEY_LEFTALT 
+      KEY_4: [KEY_5]
+      KEY_F5: KEY_G
+      #KEY_LEFTALT: [KEY_F6, KEY_LEFTALT]
+      # KEY_Q: [KEY_F5, KEY_C]
+      KEY_Q: [KEY_E, KEY_C]
+keypress_delay_ms: 200
+keymap:
+  - remap:
+
+      #BTN_EXTRA: KEY_F6
+      #BTN_SIDE: KEY_4 
+      #BTN_SIDE:  KEY_P

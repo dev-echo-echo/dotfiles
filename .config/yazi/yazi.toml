@@ -1,0 +1,25 @@
+[mgr]
+sort_by = "btime"
+sort_reverse = true
+#linemode = "owner"   #i shows the file owner in my case echo 
+
+[opener]
+play = [
+	{ run = 'mpv "$@"', orphan = true, for = "unix" },
+]
+edit = [
+	{ run = 'nvim "$@"', block = true, for = "unix" },
+]
+open = [
+	{ run = 'imv "$@"', desc = "Open" },
+]
+pdf = [
+        { run = 'zathura "$@"', orphan = true },
+]
+
+#[open]
+#rules = [
+#    { mime = "application/pdf", use = "pdf" },
+#    { name = "*", use = "open" },
+#]
+

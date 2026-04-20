@@ -1,0 +1,36 @@
+[mgr]
+[[mgr.prepend_keymap]]
+on   = "l"
+run  = "arrow next"   #"seek 1"    #"arrow next"
+
+[[mgr.prepend_keymap]]
+on   = "k"
+run  =  "arrow prev"   #"seek -1"    #"arrow pre"
+
+
+[[mgr.prepend_keymap]]
+on  =  "j"
+run = "leave"
+
+[[mgr.prepend_keymap]]
+on  = "m"
+run =  "enter"
+
+
+[help]
+[[help.prepend_keymap]]
+on = "l"
+run = "arrow next"
+
+[pick]
+[[pick.prepend_keymap]]
+on = "l"
+run = "arrow next"
+
+
+[spot]
+[[spot.prepend_keymap]]
+on = "l"
+run = "arrow next"
+
+
