@@ -24,6 +24,7 @@ fi
 
 # programs names in package managers to install.
 declare -A PROGRMAS_ARRAY
+PROGRMAS_ARRAY[bash]="pacman"
 PROGRMAS_ARRAY[niri]="pacman"
 PROGRMAS_ARRAY[nvim]="pacman"
 PROGRMAS_ARRAY[yazi]="pacman"
@@ -46,30 +47,34 @@ PROGRMAS_ARRAY[awww]="pacman"
 
 # programs config dir name. 
 declare -A CONFIG_DIR_NAME
-CONFIG_DIR_NAME[niri]="same"
+CONFIG_DIR_NAME[bash]="none"
+CONFIG_DIR_NAME[niri]="none"
 CONFIG_DIR_NAME[nvim]="name"
-CONFIG_DIR_NAME[yazi]="same"
-CONFIG_DIR_NAME[ashell]="same"
-CONFIG_DIR_NAME[kitty]="smae"
-CONFIG_DIR_NAME[impala]="same"
-CONFIG_DIR_NAME[mpv]="same"
-CONFIG_DIR_NAME[fuzzel]="same"
-CONFIG_DIR_NAME[wal]="same"
-CONFIG_DIR_NAME[zathura]="same"
-CONFIG_DIR_NAME[nwg-look]="same"
-CONFIG_DIR_NAME[kew]="same"
-CONFIG_DIR_NAME[btop]="same"
-CONFIG_DIR_NAME[mangohud]="same"
-CONFIG_DIR_NAME[cava]="same"
-CONFIG_DIR_NAME[fastfetch]="same"
-
+CONFIG_DIR_NAME[yazi]="none"
+CONFIG_DIR_NAME[ashell]="none"
+CONFIG_DIR_NAME[kitty]="none"
+CONFIG_DIR_NAME[impala]="none"
+CONFIG_DIR_NAME[mpv]="none"
+CONFIG_DIR_NAME[fuzzel]="none"
+CONFIG_DIR_NAME[wal]="none"
+CONFIG_DIR_NAME[zathura]="none"
+CONFIG_DIR_NAME[nwg-look]="none"
+CONFIG_DIR_NAME[kew]="none"
+CONFIG_DIR_NAME[btop]="none"
+CONFIG_DIR_NAME[mangohud]="none"
+CONFIG_DIR_NAME[cava]="none"
+CONFIG_DIR_NAME[fastfetch]="none"
 
 EXCEPTIOONS=$(install_programs "$PROGRMAS_ARRAY") 
 
 # link .
 for key in "${!CONFIG_DIR_NAME[@]}"; do
     echo "$key -> ${CONFIG_DIR_NAME[$key]}"
-    link "$SOURCE/$key" "$TARGET"
+    if [[ "$key"=="bash" ]]; then
+        link "$SOURCE/$key" "$HOME"
+    else
+        link "$SOURCE/$key" "$TARGET"
+    fi
 done
 
 # link pictures.
