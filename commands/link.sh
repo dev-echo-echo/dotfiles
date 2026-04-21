@@ -7,17 +7,17 @@ function link() {
     local TARGET=$3
     if [[ -L "$TARGET/$KEY" ]]; then
         echo "[$TARGET/$KEY]  Already Linked, skiping..."
-        sleep 1
+        sleep 0.5 
         return 1
     elif [[ -e "$TARGET/$KEY" ]]; then
         echo "[$TARGET/$KEY]  exists, back up"
         mv "$TARGET/$KEY" "$TARGET/$KEY.bak" 
-        sleep 1
+        sleep 0.5 
     else
         true
     fi
     echo -n "[$SOURCE] -> [$TARGET/$KEY] Linking..."
     ln -s "$SOURCE" "$TARGET/$KEY"
     printf "  ($GREEN DONE $RESET)\n"
-    sleep 1
+    sleep 0.5 
 }

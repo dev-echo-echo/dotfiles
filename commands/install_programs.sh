@@ -1,31 +1,37 @@
-function install_programs() {
-    local -n PROGRAMS_DICT=$1    # -n makes the name PROGRAMS_DICT refer to the actual
-    local EXCEPTIONS=("")        # associative arry, any read or write operation on PROGRAMS_DICT 
-    for PROGRAM in "${!PROGRAMS_DICT[@]}"; do # will affect the original associative array.
-        if $(which "$PROGRAM" &> /dev/null); then # without -n you just have a local var 
-            echo "[$PROGRAM] is already installed skiping..." # containing the string PROGRAMS_ARRAY 
-        else
-            if [[ "${PROGRAMS_DICT[$PROGRAM]}" == "pacman" ]]; then 
-                echo "Installing [$PROGRAM] with pacman"
-                if $(sudo pacman -S "$PROGRAM"); then
-                    echo "[$PROGRAM] was installed successfully" 
-                else
-                    exceptions+=("$PROGRAM")
-                fi
-            elif [[ "${PROGRAMS_DICT["$PROGRAM"]}" == "yay" ]]; then
-                echo "Installing [$PROGRAM] with yay"
-                if $(yay -S "$PROGRAM"); then
-                    echo "$PROGRAM was installed successfully" 
-                else
-                    exceptions+=("$PROGRAM")
-                fi               
-            fi
-        fi
+RED="\033[38;2;255;0;0m"
+RESET="\033[0m"
 
-    done
-    echo "ALL Programs are installed"
-    echo "" 
-    sleep 1 
-    # echo "$EXCEPTIONS"
+function install_programs() {
+    local PROGRAM=$1    
+    local WHICH_PACKAGE_MANAGER=$2
+    if pacman -Qq "$PROGRAM" &> /dev/null; then  
+        echo "[$PROGRAM] is already installed skiping..."  
+    else
+        if [[ "$WHICH_PACKAGE_MANAGER" == "pacman" ]]; then 
+            printf "Installing [%s] with pacman\n" "$PROGRAM"
+            sudo pacman -S "$PROGRAM" 2>&1
+            if [[ $? -eq 0 ]]; then
+                echo "["$PROGRAM"] was installed successfully" 
+            else
+                printf "$RED could not install [$PROGRAM] $RESET \n"
+                NOT_INSTALLED+=("$PROGRAM")
+            fi
+        elif [[ "$WHICH_PACKAGE_MANAGER" == "yay" ]]; then
+            echo "Installing [$PROGRAM] with yay"
+            yay -S "$PROGRAM"
+            if [[ $? -eq 0 ]]; then
+                echo "$PROGRAM was installed successfully" 
+            else
+                printf "$RED could not install [$PROGRAM] $RESET \n"
+                NOT_INSTALLED+=("$PROGRAM")
+            fi               
+        fi
+    fi
 }
 
+# -n makes the name PROGRAMS_DICT refer to the actual
+# associative arry, any read or write operation on PROGRAMS_DICT
+# will affect the original associative array.
+# without -n you just have a local var
+# containing the string PROGRAMS_ARRAY
+#
