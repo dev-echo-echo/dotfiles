@@ -1,25 +1,31 @@
 function install_programs() {
-    local PROGRAMs_DICT=$1
-    EXCEPTIONS=("")   
-    for PROGRAM in "$!{PROGRMAS_DICT[@]}"; do
-        if $(which $PROGRAM &> /dev/null); then 
-            echo "$PROGRAM is installed"
+    local -n PROGRAMS_DICT=$1    # -n makes the name PROGRAMS_DICT refer to the actual
+    local EXCEPTIONS=("")        # associative arry, any read or write operation on PROGRAMS_DICT 
+    for PROGRAM in "${!PROGRAMS_DICT[@]}"; do # will affect the original associative array.
+        if $(which "$PROGRAM" &> /dev/null); then # without -n you just have a local var 
+            echo "[$PROGRAM] is already installed skiping..." # containing the string PROGRAMS_ARRAY 
         else
-            if [[ "${PROGRMAS_DICT["$PROGRAM"]}" == "pacman" ]]; then 
-                if $(sudo pacman -S "$program"); then
-                    echo "$program was installed successfully" 
+            if [[ "${PROGRAMS_DICT[$PROGRAM]}" == "pacman" ]]; then 
+                echo "Installing [$PROGRAM] with pacman"
+                if $(sudo pacman -S "$PROGRAM"); then
+                    echo "[$PROGRAM] was installed successfully" 
                 else
-                    exceptions+=("$program")
+                    exceptions+=("$PROGRAM")
                 fi
-            elif [[ "${PROGRMAS_DICT["$PROGRAM"]}" == "yay" ]]; then
-                if $(yay -S "$program"); then
-                    echo "$program was installed successfully" 
+            elif [[ "${PROGRAMS_DICT["$PROGRAM"]}" == "yay" ]]; then
+                echo "Installing [$PROGRAM] with yay"
+                if $(yay -S "$PROGRAM"); then
+                    echo "$PROGRAM was installed successfully" 
                 else
-                    exceptions+=("$program")
+                    exceptions+=("$PROGRAM")
                 fi               
             fi
         fi
 
     done
-    echo "$EXCEPTIONS"
+    echo "ALL Programs are installed"
+    echo "" 
+    sleep 1 
+    # echo "$EXCEPTIONS"
 }
+

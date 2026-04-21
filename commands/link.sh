@@ -1,17 +1,23 @@
+GREEN="\033[38;2;0;255;0m"
+RESET="\033[0m"
+
 function link() {
-    local SOURCE=$1
-    local TARGET=$2
-    if [[ -L "$TARGET" ]]; then
-        echo "Already Linked, skiping..."
+    local KEY=$1
+    local SOURCE=$2
+    local TARGET=$3
+    if [[ -L "$TARGET/$KEY" ]]; then
+        echo "[$TARGET/$KEY]  Already Linked, skiping..."
+        sleep 1
         return 1
-    elif [[ -e "$TARGET" ]]; then
-        echo "TARGET exists, back up"
-        mv "$TARGET" "$TARGET.bak" 
+    elif [[ -e "$TARGET/$KEY" ]]; then
+        echo "[$TARGET/$KEY]  exists, back up"
+        mv "$TARGET/$KEY" "$TARGET/$KEY.bak" 
+        sleep 1
     else
         true
     fi
-
-    echo -n "Linking..."
-    ln -s "$SOURCE" "$TARGET"
-    echo "  (DONE)"
+    echo -n "[$SOURCE] -> [$TARGET/$KEY] Linking..."
+    ln -s "$SOURCE" "$TARGET/$KEY"
+    printf "  ($GREEN DONE $RESET)\n"
+    sleep 1
 }

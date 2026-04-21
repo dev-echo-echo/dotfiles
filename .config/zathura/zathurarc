@@ -1,0 +1,44 @@
+# Zathura configuration file
+# See zathurarc(5) man page for more options
+
+# ------------------
+# -- KEYBINDINGS --
+# ------------------
+# map <key> <function> [argument]
+# Example: map J scroll down
+
+# Use vim-like keys for scrolling
+map l scroll down
+map k scroll up
+map j scroll left
+map m scroll right
+
+# Map 'd' to scroll down by half a page
+map d scroll half-down
+
+# Map 'u' to scroll up by half a page
+map u scroll half-up
+
+
+# ------------------
+# --   SETTINGS   --
+# ------------------
+# set <option> [value]
+# Example: set selection-clipboard clipboard
+
+# Recolor for a "dark mode" look
+#set recolor true
+#set recolor-lightcolor "#282a36"
+#set recolor-darkcolor "#f8f8f2"
+
+# Change the default font
+# set font "monospace normal 12"
+
+# Change default zoom level
+set zoom-min 20
+set zoom-max 200
+
+# Other useful settings
+set statusbar-fg "#f8f8f2"
+set statusbar-bg "#44475a"
+set default-bg "#282a36"

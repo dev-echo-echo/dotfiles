@@ -295,7 +295,7 @@ spawn-at-startup "kdeconnectd"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
-spawn-sh-at-startup "~/scripts/wall.sh"
+spawn-sh-at-startup "~/.config/awww/wall.sh"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
