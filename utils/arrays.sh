@@ -1,0 +1,45 @@
+# programs names in package managers to install.
+declare -A PROGRAMS_ARRAY=(
+    [niri]="pacman"
+    [nvim]="pacman"
+    [yazi]="pacman"
+    [ashell]="yay"
+    [impala]="pacman"
+    [mpv]="pacman"
+    [fuzzel]="pacman"
+    [brave]="yay"
+    [wiremix]="pacman"
+    [zathura]="pacman"
+    [nautilus]="pacman"
+    [nwg-look]="yay"
+    [btop]="pacman"
+    [kew]="yay"
+    [mangohud]="pacman"
+    [cava]="pacman"
+    [fastfetch]="pacman"
+    [awww]="pacman"
+    [python-pywal]="yay"
+)
+
+# programs config dir name. 
+declare -A CONFIG_DIR_NAME=(
+    [bash]="bash"
+    [niri]="niri"
+    [nvim]="nvim"
+    [yazi]="yazi"
+    [ashell]="ashell"
+    [kitty]="kitty"
+    [impala]="impala"
+    [mpv]="mpv"
+    [fuzzel]="fuzzel"
+    [wal]="python-pywal"
+    [zathura]="zathura"
+    [nwg-look]="nwg-look"
+    [kew]="kew"
+    [btop]="btop"
+    [mangohud]="mangohud"
+    [cava]="cava"
+    [fastfetch]="fastfetch"
+    [awww]="awww"
+)
+

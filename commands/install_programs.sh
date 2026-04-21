@@ -1,15 +1,19 @@
 RED="\033[38;2;255;0;0m"
 RESET="\033[0m"
 
+function is_installed() {
+    pacman -Q "$1" &>/dev/null
+}
+
 function install_programs() {
     local PROGRAM=$1    
     local WHICH_PACKAGE_MANAGER=$2
-    if pacman -Qq "$PROGRAM" &> /dev/null; then  
+    if is_installed "$PROGRAM"; then  
         echo "[$PROGRAM] is already installed skiping..."  
     else
         if [[ "$WHICH_PACKAGE_MANAGER" == "pacman" ]]; then 
             printf "Installing [%s] with pacman\n" "$PROGRAM"
-            sudo pacman -S "$PROGRAM" 2>&1
+            sudo pacman -S --needed "$PROGRAM" 2>&1
             if [[ $? -eq 0 ]]; then
                 echo "["$PROGRAM"] was installed successfully" 
             else
@@ -18,7 +22,8 @@ function install_programs() {
             fi
         elif [[ "$WHICH_PACKAGE_MANAGER" == "yay" ]]; then
             echo "Installing [$PROGRAM] with yay"
-            yay -S "$PROGRAM"
+            command -v yay &>/dev/null || { echo "yay not installed"; exit 1; }
+            yay -S --needed "$PROGRAM"
             if [[ $? -eq 0 ]]; then
                 echo "$PROGRAM was installed successfully" 
             else
