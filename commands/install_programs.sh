@@ -34,9 +34,4 @@ function install_programs() {
     fi
 }
 
-# -n makes the name PROGRAMS_DICT refer to the actual
-# associative arry, any read or write operation on PROGRAMS_DICT
-# will affect the original associative array.
-# without -n you just have a local var
-# containing the string PROGRAMS_ARRAY
-#
+
