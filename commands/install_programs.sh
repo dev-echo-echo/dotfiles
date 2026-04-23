@@ -23,7 +23,7 @@ function install_programs() {
         elif [[ "$WHICH_PACKAGE_MANAGER" == "yay" ]]; then
             echo "Installing [$PROGRAM] with yay"
             command -v yay &>/dev/null || { echo "yay not installed"; exit 1; }
-            yay -S --needed "$PROGRAM"
+            yay -S --needed --noconfirm "$PROGRAM"    # --noconfirm skip y/n questions.
             if [[ $? -eq 0 ]]; then
                 echo "$PROGRAM was installed successfully" 
             else

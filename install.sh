@@ -15,21 +15,16 @@ source "$SCRIPT_DIR/utils/colors.sh"
 source "$SCRIPT_DIR/utils/arrays.sh"
 
 echo "enter password for pacman once"
-sudo -v   # ask password once.
+sudo -v  # ask password once.
 
 # update the system.
 while true; do
     read -p "do you want to update the system first: [y/n] " answer
-    if [[ "$answer" == "y" ]]; then
-        echo "updating the system..."
-        sudo pacman -Syu
-        break
-    elif [[ "$answer" == "n" ]]; then
-        true 
-        break
-    else
-        echo "valid options are [y/n]"
-    fi
+    case "$answer" in
+        y | Y)  echo "updating the system..."; sudo pacman -Syu; break ;;
+        n | N) break ;;
+        *) echo "valid options are [y or Y / n or N]" ;;
+    esac
 done
 
 INITIAL_PROGRAMS=("bash" "git" "yay")
@@ -72,13 +67,12 @@ if (( "${#NOT_INSTALLED[@]}" != 0 )); then
     echo ""
     while true; do
         read -p "do you want to continue: " userinput
-        if [[ "$userinput" == "y" ]]; then
-            break
-        elif [[ "$userinput" == "n" ]]; then
-            exit
-        else
-            echo "valid options are [y/n]"
-        fi
+
+        case "$userinput" in
+            y | Y) break ;;
+            n | N) exit ;; 
+            *) echo "valid options are [y or Y / n or N]" ;;
+        esac
     done
 else
     echo "All programs are installed!"
@@ -127,11 +121,9 @@ echo "Installation Complete!"
 echo ""
 while true; do
     read -p "do you want to reboot: " choise
-    if [[ "$choise" == "y" ]]; then
-        reboot
-    elif [[ "$choise" == "n" ]]; then
-        break
-    else
-        echo "valid options: [y/n]"
-    fi
+    case "$choise" in 
+        y | Y) reboot ;;
+        n | N) break ;;
+        *) echo "valid options: [y or Y / n or N]" 
+    esac
 done
