@@ -1,5 +1,6 @@
 # programs names in package managers to install.
 declare -A PROGRAMS_ARRAY=(
+    [kitty]="pacman"
     [niri]="pacman"
     [nvim]="pacman"
     [yazi]="pacman"
@@ -19,6 +20,7 @@ declare -A PROGRAMS_ARRAY=(
     [fastfetch]="pacman"
     [awww]="pacman"
     [python-pywal]="yay"
+    [gammastep]="pacman"
 )
 
 # programs config dir name. 

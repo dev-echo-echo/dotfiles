@@ -29,9 +29,9 @@ ombre () {
 function prompt_command() {
 	git=$(git branch --show-current 2>/dev/null)
 	env=$(if [[ -n "$VIRTUAL_ENV" ]]; then echo "($(basename $VIRTUAL_ENV))"; fi)
-	PS1="\n$PINK$git$RESET$ORANGE$env$RESET$GRAY\u \w \n$RESET$ORANGE $RESET"
+	PS1="\n\[$PINK\]$git\[$RESET$ORANGE\]$env\[$RESET$GRAY\]\u \w \n\[$RESET$ORANGE\] \[$RESET\]"
 }
 PROMPT_COMMAND=prompt_command   # the shell automaticlly runs each command stored in PROMPT_COMMAND 
                                 #  before each prompt 
-
+# you must wrap non visible characters in \[...\] or the cursor jumps to wrong position and backspace deltes weired parts.
 
