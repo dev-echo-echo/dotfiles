@@ -40,10 +40,10 @@ alias sky="sudo ~/myhome/transformer/wheel_improved"
 alias nicescore="ps -o pid,ni,cmd "
 
 alias camera="qv4l2"
-
 alias shazam="songrec"
-
 alias music="termusic"
+alias insta="instagram-cli"
+
 #2. this is raleted to python all of it
 # The 'export' command makes the variable available to all child processes in the current shell session
 export PYTHONPATH=~/myhome  # Set the PYTHONPATH environment variable to ~/MyHome
@@ -114,7 +114,7 @@ case $- in
 esac
 
 # Path to the bash it configuration
-#export BASH_IT="/home/echo/.bash_it"
+export BASH_IT="/home/echo/.bash_it"
 
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
