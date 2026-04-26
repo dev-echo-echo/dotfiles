@@ -49,21 +49,21 @@ scale_factor = 1.2
 opacity = 1 
 style = "Islands"
 
-primary_color = "#bdc0e4"
-success_color = "#9ece6a"
-text_color =  "#e9edf1" #"#bf9b8f"  #"#7f5e58"    # default color #a9b1d6  
-workspace_colors = [ "#4d5064", "#625d31" ]
-special_workspace_colors = [ "#7aa2f7", "#9ece6a" ]
+primary_color = ""
+success_color = ""
+text_color =  "#E6E8E7" 
+workspace_colors = [ "", "" ]
+special_workspace_colors = [ "", "" ]
 
 [appearance.danger_color]
-base = "#f7768e"
-weak = "#e0af68"
+base = ""
+weak = ""
 
 [appearance.background_color]
-base = "#171723" # almost black
-weak = "#24273a"
-strong = "#414868"
+base = "#0c0c12" 
+weak = ""
+strong = ""
 
 [appearance.secondary_color]
-base = "#0c0d14"
+base = "#0c0c12"
 

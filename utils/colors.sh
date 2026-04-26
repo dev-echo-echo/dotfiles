@@ -1,23 +1,38 @@
-# Reset
-RESET="\033[0m"
+# =========================
+# THEME: COTTAGES RIVER
+# =========================
 
-# RGB foreground colors
-RED="\033[38;2;255;0;0m"
-GREEN="\033[38;2;0;255;0m"
-BLUE="\033[38;2;0;0;255m"
+export WALLPAPER="/home/echo/Pictures/favorites/cottages-river.png"
+export ALPHA="100"
 
-YELLOW="\033[38;2;255;255;0m"
-CYAN="\033[38;2;0;255;255m"
-MAGENTA="\033[38;2;255;0;255m"
+export BG="#0f0f17"
+export FG="#bcbfce"
+export TEXT="#bcbfce"
+export CURSOR="#bcbfce"
 
-ORANGE="\033[38;2;255;165;0m"
-PINK="\033[38;2;255;105;180m"
-PURPLE="\033[38;2;128;0;128m"
+# Standardized Colors
+export COLOR0="#0f0f17"
+export COLOR1="#63667C"
+export COLOR2="#636A86"
+export COLOR3="#70748B"
+export COLOR4="#8A798B"
+export COLOR5="#7C829C"
+export COLOR6="#9E8FA1"
+export COLOR7="#bcbfce"
+export COLOR8="#838590"
+export COLOR9="#63667C"
+export COLOR10="#636A86"
+export COLOR11="#70748B"
+export COLOR12="#8A798B"
+export COLOR13="#7C829C"
+export COLOR14="#9E8FA1"
+export COLOR15="#bcbfce"
 
-LIGHT_BLUE="\033[38;2;173;216;230m"
-LIME="\033[38;2;50;205;50m"
-GOLD="\033[38;2;255;215;0m"
+# Accents
+export ACCENT1="#9E8FA1"
+export ACCENT1_SOFT="#8A798B"
+export ACCENT2="#7C829C"
+export ACCENT2_SOFT="#636A86"
 
-GRAY="\033[38;2;128;128;128m"
-WHITE="\033[38;2;255;255;255m"
-BLACK="\033[38;2;0;0;0m"
+# Utility
+export RESET="\033[0m"

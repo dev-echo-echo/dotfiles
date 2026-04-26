@@ -2,128 +2,68 @@
 #set -e # exit immediatly if a command fails.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-SOURCE="$SCRIPT_DIR/.config"
+SOURCE="$SCRIPT_DIR/config"
 TARGET="$HOME/.config"
+
+# import files.
+source "$SCRIPT_DIR/lib/update_system.sh"
+source "$SCRIPT_DIR/lib/core.sh"
+source "$SCRIPT_DIR/lib/install_yay.sh" 
+source "$SCRIPT_DIR/lib/install_base.sh" 
+source "$SCRIPT_DIR/lib/install_desktop.sh" 
+source "$SCRIPT_DIR/lib/install_tools.sh" 
+source "$SCRIPT_DIR/lib/generator.sh" 
+source "$SCRIPT_DIR/lib/link.sh" 
+source "$SCRIPT_DIR/lib/copy_images.sh" 
+source "$SCRIPT_DIR/lib/restart.sh" 
+source "$SCRIPT_DIR/utils/colors.sh" 
+source "$SCRIPT_DIR/utils/arrays.sh" 
 
 # create needed directories if not exists.
 mkdir -p "$TARGET"
 mkdir -p "$HOME/Pictures"
 
-source "$SCRIPT_DIR/commands/install_programs.sh"
-source "$SCRIPT_DIR/commands/link.sh"
-source "$SCRIPT_DIR/utils/colors.sh"
-source "$SCRIPT_DIR/utils/arrays.sh"
-
+# ask password once.
 echo "enter password for pacman once"
-sudo -v  # ask password once.
+sudo -v
 
-# update the system.
-while true; do
-    read -p "do you want to update the system first: [y/n] " answer
-    case "$answer" in
-        y | Y)  echo "updating the system..."; sudo pacman -Syu; break ;;
-        n | N) break ;;
-        *) echo "valid options are [y or Y / n or N]" ;;
-    esac
-done
+# install packages
+update_system
+install_yay
+install_base
+install_desktop
+install_tools
 
-INITIAL_PROGRAMS=("bash" "git" "yay")
-for item in "${INITIAL_PROGRAMS[@]}"; do
-    if ! is_installed "$item" &>/dev/null; then
-        if [[ "$item" == "yay" ]]; then
-            if is_installed "git"; then
-                echo "installing yay..."
-                sudo pacman -S --needed git base-devel  
-                git clone https://aur.archlinux.org/yay.git || exit 1 # stop if commands fail 
-                cd yay || exit 1 
-                makepkg -si || exit 1
-                cd ..
-                rm -rf yay
-            else
-                echo "git is not installed can not install yay"
-            fi
-        else
-            echo "Installing $item..."
-            sudo pacman -S --needed "$item"
-        fi
-    else
-        echo "[$item] is already installed"
-    fi
-done
-echo ""
+# run generator
+generator
 
-# intall needed programs.
-NOT_INSTALLED=()
-for PROGRAM in "${!PROGRAMS_ARRAY[@]}"; do 
-    install_programs "$PROGRAM" "${PROGRAMS_ARRAY[$PROGRAM]}"
-done
+# symlink
+echo "╭───────────────────╮"
+echo "│ creating simlinks │"
+echo "╰───────────────────╯"
 
-echo ""
-if (( "${#NOT_INSTALLED[@]}" != 0 )); then
-    echo "programs could not install: "
-    for niprogram in "${NOT_INSTALLED[@]}"; do
-        echo -n "  [$niprogram]"
-    done
-    echo ""
-    while true; do
-        read -p "do you want to continue: " userinput
-
-        case "$userinput" in
-            y | Y) break ;;
-            n | N) exit ;; 
-            *) echo "valid options are [y or Y / n or N]" ;;
-        esac
-    done
-else
-    echo "All programs are installed!"
-fi
-
-
-# link .
 declare -A LINK_TYPE=(
     [bash]="file"
-    )
-echo ""
-echo "Start creating symlinks..."
-for NAME in "${!CONFIG_DIR_NAME[@]}"; do
-    if is_installed "${CONFIG_DIR_NAME[$NAME]}"; then
-        if [[ "${LINK_TYPE[$NAME]}" == "file" ]]; then
-            link ".bashrc" "$SOURCE/$NAME/.bashrc" "$HOME"
-            link ".theme.bash" "$SOURCE/$NAME/.theme.bash" "$HOME"
-        else
-            link "$NAME" "$SOURCE/$NAME" "$TARGET"
-        fi
+)
+
+for NAME in "${CONFIG_DIR_NAME[@]}"; do 
+    if ! is_installed "${CONFIG_DIR_NAME[$NAME]}"; then
+        echo "${CONFIG_DIR_NAME[$NAME]} is not installed skipping..."
     else
-        echo "[${CONFIG_DIR_NAME[$NAME]}] is not installed skipping..."
+        case "${LINK_TYPE[$NAME]}" in 
+            "file") 
+                link ".bashrc" "$SOURCE/$NAME/.bashrc" "$HOME"
+                link ".theme.bash" "$SOURCE/$NAME/.theme.bash" "$HOME" 
+                link ".colors.sh" "$SOURCE/$NAME/.colors.sh" "$HOME" 
+                link ".ombre.sh" "$SOURCE/$NAME/.ombre.sh" "$HOME" ;;
+            *) 
+                link "$NAME" "$SOURCE/$NAME" "$TARGET"  ;;
+        esac
     fi
 done
 
-
-# copy pictures.
-echo ""
-function copy(){
-    if [[ ! -d "$HOME/Pictures/favorites" ]]; then
-        if cp -r "$SCRIPT_DIR/utils/favorites" "$HOME/Pictures/"; then
-            echo "Copied PICTURES successfully"
-        else
-            echo "Something went wrong could not copy PICTURES"
-        fi
-    else
-        echo "Pictures already exists"
-    fi
-}
+# copy images
 copy
 
-echo ""
-echo "Installation Complete!"
-
-# reboot.
-echo ""
-while true; do
-    read -p "do you want to reboot: " choise
-    case "$choise" in 
-        y | Y) reboot ;;
-        n | N) break ;;
-        *) echo "valid options: [y or Y / n or N]" 
-    esac
-done
+# reboot
+restart

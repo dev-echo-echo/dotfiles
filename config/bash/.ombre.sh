@@ -1,5 +1,6 @@
 function ombre(){
     text=$1
+
     sr=$(( RANDOM % 256 ))
     sg=$(( RANDOM % 256 ))
     sb=$(( RANDOM % 256 ))
