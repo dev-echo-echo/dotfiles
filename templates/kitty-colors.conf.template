@@ -1,0 +1,20 @@
+foreground      $KITTY_FG 
+background      $KITTY_BG 
+cursor          $KITTY_CURSOR 
+
+color0          $KITTY_COLOR0
+color1          $KITTY_COLOR1
+color2          $KITTY_COLOR2         
+color3          $KITTY_COLOR3
+color4          $KITTY_COLOR4
+color5          $KITTY_COLOR5
+color6          $KITTY_COLOR6
+color7          $KITTY_COLOR7
+color8          $KITTY_COLOR8
+color9          $KITTY_COLOR9
+color10         $KITTY_COLOR10 
+color11         $KITTY_COLOR11 
+color12         $KITTY_COLOR12 
+color13         $KITTY_COLOR13 
+color14         $KITTY_COLOR14 
+color15         $KITTY_COLOR15 

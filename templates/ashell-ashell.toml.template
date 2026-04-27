@@ -49,20 +49,20 @@ scale_factor = 1.2
 opacity = 0.8 
 style = "Islands"
 
-primary_color = "#89b4fa"
-success_color = "#a6e3a1"
-text_color =  "#cdd6f4"   
-workspace_colors = [ "#cdd6f4", "#1e1e2e" ]
-special_workspace_colors = [ "#f9e2af", "#313244" ]
+primary_color = "$ASHELL_PRIMARY"
+success_color = "$ASHELL_SUCCESS"
+text_color =  "$ASHELL_TEXT"   
+workspace_colors = [ "$ASHELL_WS_NORMAL_FG", "$ASHELL_WS_NORMAL_BG" ]
+special_workspace_colors = [ "$ASHELL_WS_SPECIAL_FG", "$ASHELL_WS_SPECIAL_BG" ]
 
 [appearance.danger_color]
-base = "#1e1e2e"
-weak = "#6c7086"
+base = "$ASHELL_BASE_DANGER"
+weak = "$ASHELL_WEAK_DANGER"
 
 [appearance.background_color]
-base = "#181825" 
-weak = "#585b70"
-strong = "#ffffff"
+base = "$ASHELL_BASE_BACKGROUND" 
+weak = "$ASHELL_WEAK_BACKGROUND"
+strong = "$ASHELL_STRONG_BACKGROUND"
 
 [appearance.secondary_color]
 base = "#262828"

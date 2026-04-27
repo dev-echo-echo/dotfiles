@@ -1,0 +1,98 @@
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://yalter.github.io/niri/Configuration:-Window-Rules
+
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+window-rule {
+    match app-id="eww"
+    open-floating true
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+// disable hot corners
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Example: enable rounded corners for all windows.
+// (This example rule is commented out with a "/-" in front.)
+window-rule {
+    geometry-corner-radius 6 
+    clip-to-geometry true
+}
+window-rule {
+	match app-id="Waydroid" 
+//	open-maximized true
+	open-fullscreen true
+}
+
+window-rule {
+    match app-id="waydroid.com.dts.freefiremax"
+	open-fullscreen true
+}
+
+window-rule {
+    match app-id="io-github-mmarco94-tambourine-MainKt"
+    //open-floating true
+    default-column-width {fixed 1417; }
+    default-window-height {fixed 930; }
+}
+// open mykitty
+window-rule {
+    match app-id="mykitty"
+    open-floating true
+    border {
+        width 4
+        active-gradient from="#5999d1"  to="#bc9794" angle=90 relative-to="workspace-view" in="oklch longer hue"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+    }
+    // does not work
+    min-width 480
+    min-height 480
+	default-window-height {fixed 800; }
+	default-column-width {fixed 800; }
+}
+// normal kitty
+window-rule {
+	match app-id="kitty"
+	default-column-width {fixed 1263; }
+//	default-window-height {fixed 480; }
+}
+window-rule {
+	match app-id="steam_proton"
+	open-fullscreen true
+}
+// all windows default size.
+window-rule {
+    //default-column-width {fixed 1263; }
+}

@@ -1,0 +1,23 @@
+export KITTY_BG="#0f0f17"
+export KITTY_FG="#bcbfce"
+export KITTY_TEXT="#bcbfce"
+export KITTY_CURSOR="#bcbfce"
+
+# Standardized Colors
+export KITTY_COLOR0="#0f0f17"
+export KITTY_COLOR1="#63667C"
+export KITTY_COLOR2="#636A86"
+export KITTY_COLOR3="#70748B"
+export KITTY_COLOR4="#8A798B"
+export KITTY_COLOR5="#7C829C"
+export KITTY_COLOR6="#9E8FA1"
+export KITTY_COLOR7="#bcbfce"
+export KITTY_COLOR8="#838590"
+export KITTY_COLOR9="#63667C"
+export KITTY_COLOR10="#636A86"
+export KITTY_COLOR11="#70748B"
+export KITTY_COLOR12="#8A798B"
+export KITTY_COLOR13="#7C829C"
+export KITTY_COLOR14="#9E8FA1"
+export KITTY_COLOR15="#bcbfce"
+

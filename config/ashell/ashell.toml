@@ -52,7 +52,7 @@ style = "Islands"
 primary_color = "#89b4fa"
 success_color = "#a6e3a1"
 text_color =  "#cdd6f4"   
-workspace_colors = [ "#cdd6f4", "#1e1e2e" ]
+workspace_colors = [ "#cdd6f4", "" ]
 special_workspace_colors = [ "#f9e2af", "#313244" ]
 
 [appearance.danger_color]

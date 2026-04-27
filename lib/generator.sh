@@ -1,10 +1,8 @@
-
 declare -A targets=(
-    [kitty_colors.conf]="$SCRIPT_DIR/config/kitty/colors.conf"
-    [niri.kdl]="$SCRIPT_DIR/config/niri/config.kdl"
-    [ashell.toml]="$SCRIPT_DIR/config/ashell/config.toml"
-    [nvim_colors.lua]="$SCRIPT_DIR/config/nvim/lua/core/colors.lua"
-    [yazi_theme.toml]="$SCRIPT_DIR/config/yazi/theme.toml"
+    [niri-layout.kdl]="$SCRIPT_DIR/config/niri/layout.kdl"
+    [kitty-colors.conf]="$SCRIPT_DIR/config/kitty/colors.conf"
+    [ashell-ashell.toml]="$SCRIPT_DIR/config/ashell/config.toml"
+    #[nvim-theme.lua]="$SCRIPT_DIR/config/nvim/thmes"
 )
 
 function generator(){

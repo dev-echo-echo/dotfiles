@@ -16,8 +16,12 @@ source "$SCRIPT_DIR/lib/generator.sh"
 source "$SCRIPT_DIR/lib/link.sh" 
 source "$SCRIPT_DIR/lib/copy_images.sh" 
 source "$SCRIPT_DIR/lib/restart.sh" 
-source "$SCRIPT_DIR/utils/colors.sh" 
 source "$SCRIPT_DIR/utils/arrays.sh" 
+# source themes
+source "$SOURCE/themes/niri-theme.sh"
+source "$SOURCE/themes/kitty-theme.sh"
+source "$SOURCE/themes/ashell-theme.sh"
+source "$SOURCE/themes/nvim-theme.sh"
 
 # create needed directories if not exists.
 mkdir -p "$TARGET"
