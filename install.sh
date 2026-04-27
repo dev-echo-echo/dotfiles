@@ -21,7 +21,6 @@ source "$SCRIPT_DIR/utils/arrays.sh"
 source "$SOURCE/themes/niri-theme.sh"
 source "$SOURCE/themes/kitty-theme.sh"
 source "$SOURCE/themes/ashell-theme.sh"
-source "$SOURCE/themes/nvim-theme.sh"
 
 # create needed directories if not exists.
 mkdir -p "$TARGET"
